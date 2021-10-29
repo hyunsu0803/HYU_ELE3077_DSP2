@@ -1,0 +1,30 @@
+n = 0:7;
+N = length(n);
+k = 0:N-1;
+x = [1 1 1 1 0 0 0 0];
+X=dft(x);
+magX = abs(X);
+angX = angle(X);
+xw = ((2*pi)/N)*k;
+yw = ((2*pi)/2000)*(0:1999);
+Y = 1 + exp(-j.*yw) + exp(-j*2.*yw) + exp(-j*3.*yw);
+magY = abs(Y);
+angY = angle(Y);
+
+subplot(2,1,1);
+hold on;
+stem(xw, magX);
+plot(yw, magY);
+legend('X[n]', 'X(n)');
+ylabel('magnitude');
+xlabel('Angular frequency (w)');
+hold off;
+
+subplot(2,1,2);
+hold on;
+stem(xw, angX);
+plot(yw, angY);
+legend('X[n]', 'X(n)');
+ylabel('phase');
+xlabel('Angular frequency (w)');
+hold off;
